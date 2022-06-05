@@ -1,0 +1,69 @@
+//package samrat//
+
+
+public class trys
+ 
+ {
+public static void merge(int Arr[], int start, int mid, int end) {
+
+
+int temp[] = new int[end - start + 1];
+
+
+int i = start, j = mid+1, k = 0;
+
+
+while(i <= mid && j <= end) {
+if(Arr[i] <= Arr[j]) {
+temp[k++] = Arr[i++];
+
+}
+else {
+temp[k++] = Arr[j++];
+
+}
+}
+
+
+while(i <= mid) {
+temp[k++] = Arr[i++];
+
+}
+
+
+while(j <= end) {
+temp[k++] = Arr[j++];
+
+}
+
+
+for(i = start; i <= end; i += 1) {
+Arr[i] = temp[i - start];
+}
+}
+
+
+public static void mergeSort(int Arr[], int start, int end) {
+
+if(start < end) {
+int mid = (start + end) / 2;
+mergeSort(Arr, start, mid);
+mergeSort(Arr, mid+1, end);
+merge(Arr, start, mid, end);
+}
+}
+
+public static void main(String args[])
+{
+int arr[]={7,4,2,1,4,8,9,10};
+int i=0,j=arr.length-1;
+mergeSort(arr,i,j);
+
+
+for(int ele:arr)
+{
+System.out.print(ele+" ");
+}
+}
+
+} 
