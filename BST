@@ -1,0 +1,110 @@
+//package samrat//
+
+import java.util.*;
+import java.io.*;
+
+public class binary_search_tree
+{
+	class node
+	{
+		int data;
+		node left;
+		node right;
+		public node(int data)
+		{
+			this.data=data;
+		}
+	}
+
+  node root=null;
+	
+
+	public node insert(int data)
+	{
+		return insert(root,data);
+	}
+	public node insert(node root ,int data)
+	{
+		if(root==null)
+		{
+			root= new node(data);
+			return root;
+		}
+
+		if(root.data>data)
+		{
+			root.left=insert(root.left ,data);
+		}else
+		{
+			root.right=insert(root.right ,data);
+		}
+
+		return root;
+
+
+	}
+
+	public boolean search(int data)
+	{
+		return search(root,data);
+	}
+    
+ //search tree
+	public boolean search(node root ,int data)
+	{
+		if(root==null)
+			return false;
+
+		if(root.data>data)
+		{
+			return search(root.left ,data);
+		}
+		else if(root.data==data)
+		{
+			return true;
+		}else
+		{
+			return search(root.right,data);
+		}
+	}
+
+// print tree data inorder style
+	public void inorder(node root)
+	{
+		if(root==null)
+			return;
+
+		inorder(root.left);
+		System.out.print(root.data+" ");
+		inorder(root.right);
+	}
+	// public void delete(node root, int element)
+	// {
+		
+	// }
+
+
+	public static void main(String args[])
+	{
+       
+       binary_search_tree tree =new binary_search_tree();
+       int arr[]={20,10,40,50,44,77,88,89};
+       // node root =null;
+
+       for(int i=0;i<arr.length;i++)
+       {
+       	   tree.root= tree.insert(arr[i]);
+       }
+
+       tree.inorder(tree.root);
+       System.out.println();
+
+      if(tree.search(tree.root,100))
+      	System.out.print("this value is found");
+      else
+      	System.out.print("this value not found");
+
+
+
+	}
+}
